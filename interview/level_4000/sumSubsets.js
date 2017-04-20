@@ -9,23 +9,21 @@ const arr = [1, 1, 2, 4, 4, 4, 7, 9, 9, 13, 13, 13, 15, 15, 16, 16, 16, 19, 19, 
 const num = 36;
 */
 
-/* SOLUTION:
-  Third Recursive Try:
-    - Passed all Sample Tests
-    - Passed 5/6 Hidden Tests
-*/
+/* SOLUTION: */
 const sumSubsets = (arr, num) => {
   'use strict';
   if (!arr.length) return [[]];
   const r = arr.reduce((x,y) => x + y);
   if (r === num) return [arr];
   if (r < num) return [[]];
+
   const strArr = [];
   arr.forEach((x,i) => fn(i, arr, [], strArr, num, 0));
   const c = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
-  const output = strArr.sort(c.compare).map(x => x.split(',').map(Number));
-  return output.length ? output : [[]];
+  const out = strArr.sort(c.compare).map(x => x === '' ? [] : x.split(',').map(Number));
+  return out.length ? out : [[]];
 }
+
 
 const fn = (i, orig, a, strArr, total, sum) => {
   'use strict';
@@ -38,8 +36,7 @@ const fn = (i, orig, a, strArr, total, sum) => {
 
   orig.forEach((n, j) => {
     if (sum + n <= total) {
-      const concat = a.concat([n]);
-      fn(i - 1, orig.slice(j + 1), concat, strArr, total, concat.reduce((x,y) => x + y));
+      fn(i - 1, orig.slice(j + 1), a.concat([n]), strArr, total, sum + n);
     }
   });
   return;
@@ -54,23 +51,10 @@ const arr = [
 const num = 36;
 sumSubsets(arr, num);
 
-
-    /*
-    List of test case types:
-    1.  num: zero
-        arr: empty
-    2.  num: up to 1000
-        arr: empty
-    3.  num: up to 1000
-        arr: one item which equals num
-    4.  num: 1000
-        arr: up to num
-    */
-
-
 /*
-  END SOLUTION
+  END OF SOLUTION
 */
+
 
 
 // First Try
