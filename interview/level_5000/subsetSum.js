@@ -24,7 +24,7 @@ const subsetSum = (arr) => {
   // If the sum is 0, return true.
   if (k === 0) return true;
 
-  // If sthe um is odd, return false.
+  // If the sum is odd, return false.
   if (k % 2 !== 0) return false;
 
   // Create the matrix and default everything to be false.
