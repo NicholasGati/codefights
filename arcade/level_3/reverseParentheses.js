@@ -19,3 +19,9 @@ const reverseParentheses = s => {
 }
 
 reverseParentheses("a(bcdefghijkl(mno)p)q");
+
+/*
+  Regex to find deepest pair of parentheses.
+  Did not use regex but could have.
+  regex = /\([^()]*\)/i;
+*/
